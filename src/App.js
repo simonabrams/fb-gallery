@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { RainbowFirebaseApp } from '@rainbow-modules/app'
+import { ImageGallery } from '@rainbow-modules/storage'
+import { Card } from 'react-rainbow-components'
+import './App.css'
+import { app as firebaseApp } from './firebase'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <RainbowFirebaseApp app={firebaseApp}>
+      <div className="App">
+        <Card>
+            <ImageGallery
+              path="/gallery"
+              allowUpload
+              allowDelete
+              onSelect={(imageRef) => {
+                alert (imageRef.name)
+              }}
+              />
+        </Card>
+      </div>
+    </RainbowFirebaseApp>
+  )
 }
 
 export default App;
